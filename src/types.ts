@@ -300,6 +300,11 @@ export interface OptionsObject<V extends VariantType = VariantType> extends Shar
      * @default false
      */
     persist?: boolean;
+    /**
+     * Order of a display. The order is switched only in the snackbar that is already displayed.
+     * @default 0
+     */
+     displayOrder?: number;
 }
 
 /** Properties of the internal snack which should not be exposed to outside world  */
@@ -318,7 +323,8 @@ type NeededByInternalSnack =
     | 'TransitionProps'
     | 'transitionDuration'
     | 'hideIconVariant'
-    | 'disableWindowBlurListener';
+    | 'disableWindowBlurListener'
+    | 'displayOrder';
 
 /**
  * Properties of a snackbar internal to notistack implementation. Not to be used by outside
