@@ -307,36 +307,6 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
         const snackbars = Object.keys(categ).map((origin) => {
             const snacks = categ[origin];
             const [nomineeSnack] = snacks;
-
-             const categorizedSnacks: { [category: string]: InternalSnack[] } = {
-                call: [],
-                notification: [],
-                notificationViewAll: [],
-                regular: [],
-            };
-
-            snacks.forEach((snack: InternalSnack) => {
-                const snackId = String(snack.id);
-                let category = 'regular';
-
-                if (snackId.startsWith('call-')) {
-                    category = 'call';
-                } else if (snackId.startsWith('notification-')) {
-                    category = 'notification';
-                } else if (snackId === 'view_all_notifications') {
-                    category = 'notificationViewAll';
-                }
-
-                categorizedSnacks[category].push(snack);
-            });
-
-            const combinedSnacks = [
-                ...categorizedSnacks['call'],
-                ...categorizedSnacks['notification'].reverse(),
-                ...categorizedSnacks['notificationViewAll'],
-                ...categorizedSnacks['regular'],
-            ];
-
             return (
                 <SnackbarContainer
                     key={origin}
@@ -344,7 +314,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
                     anchorOrigin={nomineeSnack.anchorOrigin}
                     classes={classes}
                 >
-                    {combinedSnacks.map((snack) => (
+                    {snacks.map((snack) => (
                         <SnackbarItem
                             key={snack.id}
                             snack={snack}
