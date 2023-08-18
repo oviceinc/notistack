@@ -305,6 +305,11 @@ export interface OptionsObject<V extends VariantType = VariantType> extends Shar
      * @default 0
      */
      displayOrder?: number;
+    /**
+     * Reverse the order of a display. The reversed order is switched only in the snackbar that is already displayed.
+     * @default false
+     */
+    reverse?: boolean;
 }
 
 /** Properties of the internal snack which should not be exposed to outside world  */
@@ -324,7 +329,8 @@ type NeededByInternalSnack =
     | 'transitionDuration'
     | 'hideIconVariant'
     | 'disableWindowBlurListener'
-    | 'displayOrder';
+    | 'displayOrder'
+    | 'reverse';
 
 /**
  * Properties of a snackbar internal to notistack implementation. Not to be used by outside

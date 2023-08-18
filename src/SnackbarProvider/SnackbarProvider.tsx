@@ -105,6 +105,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
             SnackbarProps: merger('SnackbarProps', true),
             className: clsx(this.props.className, options.className),
             displayOrder: options.displayOrder ?? 0,
+            reverse: options.reverse ?? false,
         };
 
         if (snack.persist) {
@@ -308,6 +309,17 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
         const snackbars = Object.keys(categ).map((origin) => {
             const snacks = categ[origin];
             const [nomineeSnack] = snacks.sort((a, b) => a.displayOrder - b.displayOrder);
+            const reversedSnacks = snacks.filter(snack => snack.reverse);
+            if (reversedSnacks.length > 1) {
+                reversedSnacks.reverse();
+                let reversedIndex = 0;
+                for (let i = 0; i < snacks.length; i++) {
+                    if (snacks[i].reverse) {
+                    snacks[i] = reversedSnacks[reversedIndex];
+                    reversedIndex++;
+                    }
+                }
+            }
             return (
                 <SnackbarContainer
                     key={origin}
