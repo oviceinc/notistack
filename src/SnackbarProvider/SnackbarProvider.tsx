@@ -307,7 +307,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
 
         const snackbars = Object.keys(categ).map((origin) => {
             const snacks = categ[origin];
-            const [nomineeSnack] = snacks.sort((a, b) => a.displayOrder - b.displayOrder);
+            const [nomineeSnack] = snacks.sort((a, b) => b.displayOrder - a.displayOrder);
             return (
                 <SnackbarContainer
                     key={origin}
