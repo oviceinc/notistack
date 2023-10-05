@@ -17,6 +17,7 @@
         "type": "git"
     },
     "scripts": {
+        "prepare": "npm run build",
         "prebuild": "npm run docs",
         "build": "tsdx build --entry ./src/index.ts",
         "watch": "tsdx watch --transpileOnly --entry ./src/index.ts",
