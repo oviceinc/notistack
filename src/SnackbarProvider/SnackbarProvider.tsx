@@ -104,6 +104,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
             style: merger('style', true),
             SnackbarProps: merger('SnackbarProps', true),
             className: clsx(this.props.className, options.className),
+            displayOrder: options.displayOrder ?? 0,
         };
 
         if (snack.persist) {
@@ -306,7 +307,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
 
         const snackbars = Object.keys(categ).map((origin) => {
             const snacks = categ[origin];
-            const [nomineeSnack] = snacks;
+            const [nomineeSnack] = snacks.sort((a, b) => b.displayOrder - a.displayOrder);
             return (
                 <SnackbarContainer
                     key={origin}
