@@ -105,6 +105,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
             SnackbarProps: merger('SnackbarProps', true),
             className: clsx(this.props.className, options.className),
             displayOrder: options.displayOrder ?? 0,
+            Component: options.Component,
         };
 
         if (snack.persist) {
@@ -320,7 +321,7 @@ class SnackbarProvider extends Component<SnackbarProviderProps, State> {
                             key={snack.id}
                             snack={snack}
                             classes={classes}
-                            Component={Components[snack.variant]}
+                            Component={snack.Component || Components[snack.variant]}
                             onClose={this.handleCloseSnack}
                             onEnter={this.props.onEnter}
                             onExit={this.props.onExit}

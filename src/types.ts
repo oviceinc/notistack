@@ -305,6 +305,11 @@ export interface OptionsObject<V extends VariantType = VariantType> extends Shar
      * @default 0
      */
      displayOrder?: number;
+    /**
+     * Custom component to render for this specific snackbar.
+     * Takes precedence over variant-based Components from SnackbarProvider.
+     */
+    Component?: React.JSXElementConstructor<CustomContentProps>;
 }
 
 /** Properties of the internal snack which should not be exposed to outside world  */
@@ -348,7 +353,8 @@ type NotNeededByCustomSnackbar =
     | 'transitionDuration'
     | 'TransitionProps'
     | 'dense'
-    | 'content';
+    | 'content'
+    | 'Component';
 
 /**
  * Props that will be passed to a custom component in `SnackbarProvider` `Components` prop
